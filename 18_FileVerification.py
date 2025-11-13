@@ -9,20 +9,20 @@ def listdir_nohidden(path):
         if os.path.isfile(f)
     ]
 
-date = '20230314'
+date = '20230310'
 session = 'SE_Lek1'
 
 # Paths (adjust if needed)
 rawdata_root = '/Volumes/EAS_shared/blackbuck/working/rawdata/Field_Recording_2023/Original/lekking/' + date + '/' + session
 # processed_root = '/Volumes/EAS_shared/blackbuck/working/processed/Field_Recording_2023/SpatialRegistration/' + date + '/' + session
-processed_root = '/Volumes/SSD5/' + date + '/' + session
+processed_root = '/Volumes/SSD4/processed/Field_Recording_2023/SpatialRegistration/' + date + '/' + session
 
 # Define global required suffixes (apply to all drones)
 global_required_suffixes = [
-    # '_3D_trajectories_utm.csv',
-    # '_3D_trajectories.csv',
+    '_3D_trajectories_utm.csv',
+    '_3D_trajectories.csv',
     '_Anchored_trajectories.csv',
-    # '_3D_territories_utm.csv',
+    '_3D_territories_utm.csv',
     '_3D_territories.csv',
     '_Anchored_matched.csv',
     '_Metashape_uv.csv',
@@ -37,25 +37,25 @@ global_required_suffixes = [
 # Define position-specific DLC suffixes
 position_dlc_suffixes = {
     "P1": [
-        # 'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_assemblies.pickle',
-        # 'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_el.h5',
-        # 'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_el.pickle',
-        # 'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_full.pickle',
-        # 'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_meta.pickle'
+        'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_assemblies.pickle',
+        'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_el.h5',
+        'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_el.pickle',
+        'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_full.pickle',
+        'DLC_dlcrnetms5_06_TerritoryDetectionP1Aug1shuffle1_50000_meta.pickle'
     ],
     "P2": [
-        # 'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_assemblies.pickle',
-        # 'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_el.h5',
-        # 'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_el.pickle',
-        # 'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_full.pickle',
-        # 'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_meta.pickle'
+        'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_assemblies.pickle',
+        'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_el.h5',
+        'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_el.pickle',
+        'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_full.pickle',
+        'DLC_dlcrnetms5_05_TerritoryDetectionP2Jul10shuffle1_50000_meta.pickle'
     ],
     "P3": [
-        # 'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_assemblies.pickle',
-        # 'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_el.h5',
-        # 'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_el.pickle',
-        # 'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_full.pickle',
-        # 'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_meta.pickle'
+        'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_assemblies.pickle',
+        'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_el.h5',
+        'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_el.pickle',
+        'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_full.pickle',
+        'DLC_dlcrnetms5_07_TerritoryDetectionP3Aug18shuffle1_50000_meta.pickle'
     ]
 }
 
@@ -104,10 +104,10 @@ for drone in ['P1D1', 'P1D2', 'P2D3', 'P2D4', 'P3D5', 'P3D6']:
         for f in sorted(missing_files):
             print(f"   - {f}")
 
-    # if unexpected_files:
-    #     print("⚠️ Unexpected extra files in processed_files:")
-    #     for f in sorted(unexpected_files):
-    #         print(f"   - {f}")
+    if unexpected_files:
+        print("⚠️ Unexpected extra files in processed_files:")
+        for f in sorted(unexpected_files):
+            print(f"   - {f}")
 
     if not missing_files and not unexpected_files:
         print(f"✅ All files for {date} {session} {drone} match exactly!")
